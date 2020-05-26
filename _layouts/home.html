@@ -1,23 +1,15 @@
 ---
 layout: default
 ---
-
-<script>
-        $(document).ready(function(){
-            $('#typewriteText').typewrite({
-                actions: [
-                    {type: 'Hello, I’m {{site.author}}, {{site.author_bio}}.'}
-                ]
-            });
-        });
-    </script>
-
-
-<div class="col-lg-8 offset-md-2">
-  <div class="jumbotron" style="text-align: center;">
-    <h1 class="display-4">Hello, {{site.author}} !</h1>
-    <h3> {{site.author_bio}} . You can edit this in _config.yml file</h3>
-    <p class="lead" id="typewriteText"></p>
-    <button class="btn btn-dark btn-lg"><a href="/about"> About Me </a></button>
-  </div>
+{%- assign _sections = site.sections | sort: 'order' -%}
+{%- include header.html scrolly_nav=_sections -%}
+<!-- Main -->
+<div id="main">
+	{%- if page.content != "" -%}
+		{%- include section.html title=page.title photo=page.cover-photo photo-alt=page.cover-photo-alt auto-header=page.auto-header content=page.content -%}
+	{%- endif -%}
+	<!-- Sections -->
+	{%- for _section in _sections -%}
+		{%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_section.content -%}
+	{%- endfor -%}
 </div>
