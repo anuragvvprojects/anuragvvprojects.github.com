@@ -1,6 +1,6 @@
 ---
 title: Next
-subtitle: a list of books I read
+subtitle: a list of books I read NEXT
 layout: "page"
 icon: fa-book
 order: 4
